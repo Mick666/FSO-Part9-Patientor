@@ -15,6 +15,11 @@ const getNonSensitiveEntries = (): NonSensitivePatientEntry[] => {
     }));
 };
 
+const getById = (id: string): PatientEntry => {
+    const individualPatient = patients.filter((patient: PatientEntry) => patient.id === id);
+    return individualPatient[0];
+};
+
 const addPatient = (object:NewPatientEntry): PatientEntry => {
     const newPatient = {
         id: patients.length.toString(),
@@ -27,5 +32,6 @@ const addPatient = (object:NewPatientEntry): PatientEntry => {
 export default {
     getEntries,
     getNonSensitiveEntries,
-    addPatient
+    addPatient,
+    getById
 };

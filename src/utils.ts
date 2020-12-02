@@ -1,4 +1,4 @@
-import { Gender, NewPatientEntry } from './types';
+import { Gender, NewPatientEntry, Entry } from './types';
 /* eslint-disable @typescript-eslint/restrict-template-expressions */
 /* eslint-disable @typescript-eslint/no-unsafe-member-access */
 /* eslint-disable @typescript-eslint/no-explicit-any */
@@ -50,13 +50,25 @@ const parseGender = (text: any): Gender => {
     return text;
 };
 
+const isEntry = (entry: any) => {
+    return Array.isArray(entry);
+};
+
+const parseEntries = (entries: Array<Entry>) => {
+    if (!isEntry(entries)) {
+        throw new Error(`Invalid entry provided: ${entries}`);
+    }
+    return entries;
+};
+
 const toNewPatientEntry = (object: any): NewPatientEntry => {
     return {
         name: parseName(object.name),
         ssn: parseSSN(object.ssn),
         dateOfBirth: parseDOB(object.dateOfBirth),
         occupation: parseOccupation(object.occupation),
-        gender: parseGender(object.gender)
+        gender: parseGender(object.gender),
+        entries: parseEntries(object.entries)
     };
 };
 
