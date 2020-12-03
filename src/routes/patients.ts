@@ -11,6 +11,7 @@ router.get('/', (_req, res) => {
 });
 
 router.get('/:id', (req, res) => {
+    console.log('ping');
     const id = req.params.id;
     res.send(patientService.getById(id));
 });
