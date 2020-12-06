@@ -1,5 +1,5 @@
 import patients from '../../data/patients';
-import { PatientEntry, NonSensitivePatientEntry, NewPatientEntry } from '../types';
+import { PatientEntry, NonSensitivePatientEntry, NewPatientEntry, NewEntry, Entry } from '../types';
 
 const getEntries = ():Array<PatientEntry> => {
     return patients;
@@ -29,9 +29,20 @@ const addPatient = (object:NewPatientEntry): PatientEntry => {
     return newPatient;
 };
 
+const addPatientEntry = (object: NewEntry, id: string): Entry => {
+    const patient = getById(id);
+    const newEntry = {
+        id: patient.entries.length.toString(),
+        ...object
+    };
+    patient.entries.push(newEntry);
+    return newEntry;
+};
+
 export default {
     getEntries,
     getNonSensitiveEntries,
     addPatient,
-    getById
+    getById,
+    addPatientEntry
 };
