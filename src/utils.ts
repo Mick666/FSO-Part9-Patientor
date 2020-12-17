@@ -115,12 +115,14 @@ const parseDiagnosisCodes = (diagnosisCodes: any) => {
 };
 
 const isHealthCheck = (param: any): param is HealthCheckRating => {
+    console.log('tessssting');
     return Object.values(HealthCheckRating).includes(param);
 };
 
 const parseHealthCheck = (healthCheck: any) => {
-    if (!healthCheck || !isHealthCheck(healthCheck)) 
+    if (!isHealthCheck(healthCheck)) {
         throw new Error(`Invalid health check provided: ${healthCheck}`);
+    }
     return healthCheck;
 };
 
