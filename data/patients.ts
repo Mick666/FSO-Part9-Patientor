@@ -115,10 +115,4 @@ const patients: PatientEntry[] = [
     },
   ];
 
-// const patientEntries: PatientEntry [] = patients.map(obj => {
-//     const object = toNewPatientEntry(obj) as PatientEntry;
-//     object.id = obj.id;
-//     return object;
-// });
-
 export default patients;
